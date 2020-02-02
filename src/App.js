@@ -61,7 +61,7 @@ function App() {
     const currentPrice = await contractInstance.methods
       .getStockPrice(Web3.utils.fromUtf8(symbol))
       .call()
-    setPrice(currentPrice.toString())
+    setPrice((currentPrice/100).toString())
   }
   const getVolume = async () => {
     const currentVolume = await contractInstance.methods
@@ -96,12 +96,12 @@ function App() {
           {data && (
             <>
               <div>
-                <button onClick={getPrice}>Click to get price</button>
-              </div>
-              <div>
                 <button onClick={send}>
                   Click to send price data to smart contract
                 </button>
+              </div>
+              <div>
+                <button onClick={getPrice}>Click to get price</button>
               </div>
               <div>
                 <button onClick={getVolume}>Click to get volume</button>
